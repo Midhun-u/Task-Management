@@ -1,0 +1,58 @@
+@use '../../styles' as styles;
+
+.container {
+    width: 100%;
+    height: 100%;
+    @extend %container-center-style;
+
+    .form {
+        width: 450px;
+        height: auto;
+        padding: 20px;
+        background-color: var(--foreground-color);
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .form-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        letter-spacing: -1px;
+    }
+
+    .form-input-container{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .nav-link{
+        text-decoration: none;
+        color: var(--primary-accent-color);
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+
+    .primary-button{
+        @extend %primary-button-style;
+    }
+}
+
+@media(max-width: 600px){
+    .container{
+        .form{
+            width: 100%;
+        }
+    }
+}
+
+@media(max-height: 550px){
+    .container{
+        align-items: start;
+        margin-top: 20px;
+    }
+}

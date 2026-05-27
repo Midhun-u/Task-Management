@@ -1,0 +1,31 @@
+%container-center-style{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+%button-style{
+    width: 100%;
+    padding: 8px;
+    background-color: var(--foreground-color);
+    border: 1.5px solid var(--disable-color);
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+
+    &:hover{
+        background-color: var(--background-color);
+    }
+}
+
+%primary-button-style{
+    @extend %button-style;
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--foreground-color);
+
+    &:hover{
+        background-color: var(--primary-accent-color);
+    }
+}
