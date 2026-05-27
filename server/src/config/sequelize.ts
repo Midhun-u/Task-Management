@@ -8,6 +8,7 @@ export const sequelize = new Sequelize({
     host: envVariables.DB_HOST,
     password: envVariables.DB_PASSWORD,
     database: envVariables.DB_NAME,
+    port: envVariables.DB_PORT,
     logging: false,
 })
 
@@ -17,7 +18,7 @@ export const connectDatabase = async () => {
     try {
         
         await sequelize.authenticate()
-        await sequelize.sync({alter: true})
+        await sequelize.sync({alter: true}) 
 
         console.log(`Database is connected`)
 

@@ -32,7 +32,7 @@ const Sign = () => {
             password: password
         })
         if(result.success){
-            dispatch(authSuccess({authToken: result.authToken, user: result.user}))
+            dispatch(authSuccess({authToken: result.data.authToken, user: result.data.user}))
             toast.success("Account is created")
             navigate("/")
         }else{

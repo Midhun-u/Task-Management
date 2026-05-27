@@ -30,7 +30,7 @@ const authSlice = createSlice({
             if(action.payload.user){
                 state.user = action.payload.user
             }
-
+            
             if(action.payload.authToken){
                 localStorage.setItem('authToken', action.payload.authToken)
                 state.authToken = action.payload.authToken
