@@ -1,0 +1,12 @@
+.container{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: relative;
+   
+    .icon{
+        position: absolute;
+        left: 10px;
+        color: var(--disable-color);
+    }
+}
