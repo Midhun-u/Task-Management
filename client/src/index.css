@@ -1,5 +1,5 @@
 :root {
-  --background-color: 	#F0F0F0;
+  --background-color: #F0F0F0;
   --foreground-color: #fff;
   --foreground-theme-color: #000;
   --primary-color: rgb(32, 131, 224);
@@ -16,6 +16,15 @@
   font-style: normal;
 }
 
+.dark {
+  --background-color: #101010;
+  --foreground-color: #000;
+  --foreground-theme-color: #ffffff;
+  --primary-color: rgb(32, 131, 224);
+  --primary-accent-color: rgb(24, 99, 169);
+  --disable-color: #868686;
+}
+
 body {
   width: 100vw;
   height: 100dvh;
@@ -23,6 +32,12 @@ body {
   background-color: var(--background-color);
   position: relative;
   overflow-x: hidden;
+  color: var(--foreground-theme-color);
+}
+
+input{
+  background-color: var(--foreground-color);
+  color: var(--foreground-theme-color);
 }
 
 ::-webkit-scrollbar {
