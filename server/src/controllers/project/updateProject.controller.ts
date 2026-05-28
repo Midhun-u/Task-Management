@@ -4,15 +4,16 @@ import { handleError } from "../../utils/handleError.js";
 import type { JWT_PAYLOAD } from "../../types/jwtPayload.js";
 import { sendResponse } from "../../utils/sendResponse.js";
 import { ProjectModel } from "../../models/project.model.js";
+import { projectValidator } from "../../validators/projectValidator.js";
 
 // Controller for updating project
 export const updateProjectController = handleError(async (request: RequestWithUser, response: Response) => {
 
-    const {id: userId} = request.user as JWT_PAYLOAD
-    const {id} = request.params as {id: string} || {}
+    const { id: userId } = request.user as JWT_PAYLOAD
+    const { id } = request.params as { id: string } || {}
     const body = request.body || {}
 
-    if(!userId){
+    if (!userId) {
         return sendResponse({
             response: response,
             statusCode: 400,
@@ -22,7 +23,7 @@ export const updateProjectController = handleError(async (request: RequestWithUs
     }
 
     const project = await ProjectModel.getProjectByIdAndUserId(id, userId)
-    if(!project){
+    if (!project) {
         return sendResponse({
             response: response,
             statusCode: 404,
@@ -31,7 +32,8 @@ export const updateProjectController = handleError(async (request: RequestWithUs
         })
     }
 
-    if(body?.id || body?.createdAt || body?.updatedAt || body?.user_id){
+
+    if (body?.id || body?.createdAt || body?.updatedAt || body?.user_id) {
         return sendResponse({
             response: response,
             statusCode: 403,
@@ -40,8 +42,18 @@ export const updateProjectController = handleError(async (request: RequestWithUs
         })
     }
 
-    const {updatedCount, updatedRows} = await ProjectModel.updateProjectByIdAndUserId(id, userId, body)
-    if(updatedCount && updatedRows){
+    const validator = projectValidator(body, true)
+    if (validator.error || !validator.fields || !validator.success) {
+        return sendResponse({
+            response: response,
+            statusCode: 400,
+            success: false,
+            errorMessage: validator.error
+        })
+    }
+
+    const { updatedCount, updatedRows } = await ProjectModel.updateProjectByIdAndUserId(id, userId, validator.fields as Record<string, any>)
+    if (updatedCount && updatedRows) {
         return sendResponse({
             response: response,
             statusCode: 200,

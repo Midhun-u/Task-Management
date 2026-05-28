@@ -5,6 +5,7 @@ import { authRouter } from './routes/auth.route.js'
 import cors from 'cors'
 import morgan from 'morgan'
 import { projectRouter } from './routes/project.route.js'
+import { taskRouter } from './routes/task.route.js'
 
 // App instance
 const app = express()
@@ -22,6 +23,7 @@ app.use(morgan("dev"))
 // Routes
 app.use("/api/v1/auth", authRouter)
 app.use("/api/v1/project", projectRouter)
+app.use("/api/v1/task", taskRouter)
 app.use("", (request, response) => response.status(404).json({success: false, error: "Route is not found", statusCode: 404}))
 
 app.listen(envVariables.PORT, async () => {

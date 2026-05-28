@@ -4,6 +4,7 @@ import { handleError } from "../../utils/handleError.js";
 import type { JWT_PAYLOAD } from "../../types/jwtPayload.js";
 import { sendResponse } from "../../utils/sendResponse.js";
 import { ProjectModel } from "../../models/project.model.js";
+import { TaskModel } from "../../models/task.model.js";
 
 // Controller for deleting project
 export const deleteProjectController = handleError(async (request: RequestWithUser, response: Response) => {
@@ -32,6 +33,10 @@ export const deleteProjectController = handleError(async (request: RequestWithUs
 
     const deletedCount = await ProjectModel.deleteProjectBytIdAndUserId(id, userId)
     if(deletedCount){
+
+        // Deleting tasks which are in the project
+        await TaskModel.deleteTaskByProjectIdAndUserId(id, userId)
+
         return sendResponse({
             response: response,
             statusCode: 200,

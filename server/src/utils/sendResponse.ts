@@ -15,7 +15,7 @@ export const sendResponse = ({response, success, statusCode, errorMessage, data,
 
     if(errorMessage) responseData.error = errorMessage
 
-    if(data) responseData.data = data
+    data? responseData.data = data: responseData.data = {}
 
     if(message) responseData.message = message
 

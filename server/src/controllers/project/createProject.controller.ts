@@ -31,8 +31,8 @@ export const createProjectController = handleError(async (request: RequestWithUs
     }
 
     const newProject = await ProjectModel.addProject({
-        title: validator.fields.title,
-        description: validator.fields.description,
+        title: validator.fields.title as string,
+        description: validator.fields.description as string,  
         user_id: userId
     })
 
