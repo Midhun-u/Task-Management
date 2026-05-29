@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import style from '../../styles/components/ui/container.module.scss'
+import style from '../../styles/components/layout/container.module.scss'
 
 const Container = ({children}: {children: ReactNode}) => {
 

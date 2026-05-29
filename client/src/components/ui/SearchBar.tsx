@@ -3,8 +3,13 @@ import {
     SearchIcon
 } from 'lucide-react'
 import Input from './Input'
+import type { ChangeEvent } from 'react'
 
-const SearchBar = () => {
+interface SearchBarProps{
+    onChange?: (event: ChangeEvent<HTMLInputElement>) => void
+}
+
+const SearchBar = ({onChange}: SearchBarProps) => {
 
     return (
         <div className={style['container']}>
@@ -15,6 +20,7 @@ const SearchBar = () => {
             />
             <Input
                 placeholder='Search Projects'
+                onChange={onChange}
             />
         </div>
     )

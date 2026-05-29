@@ -1,0 +1,55 @@
+@use '../../styles' as styles;
+
+.container{
+    margin-top: 25px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+    gap: 10px;
+}
+
+.popup-dialog{
+    margin: auto;
+    border: none;
+    width: 400px;
+    border-radius: 10px;
+    position: relative;
+
+    .close-icon{
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+    }
+}
+
+.update-form{
+    width: 100%;
+    height: auto;
+    background-color: var(--foreground-color);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-top: 30px;
+
+    .update-button{
+        @extend %primary-button-style;
+    }
+
+    .delete-button{
+        @extend .update-button;
+        background-color: var(--foreground-color);
+        color: var(--foreground-theme-color);
+
+        &:hover{
+            background-color: var(--background-color);
+        }
+    }
+}
+
+@media(max-width: 600px){
+    .container{
+        grid-template-columns: 1fr;
+    }
+}

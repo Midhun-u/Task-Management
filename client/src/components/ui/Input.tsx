@@ -5,12 +5,12 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement>{
     ref?: Ref<HTMLInputElement>
 }
 
-const Input = (props: InputProps) => {
+const Input = ({ref, ...props}: InputProps) => {
 
     return (
         <input className={style.input}
-            ref={props.ref}
             {...props}
+            ref={ref}
         />
     )
 

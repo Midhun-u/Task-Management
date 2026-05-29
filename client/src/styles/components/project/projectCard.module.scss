@@ -1,0 +1,39 @@
+.container{
+    background-color: var(--foreground-color);
+    padding: 15px;
+    border-radius: 10px;
+    height: 120px;
+    cursor: pointer;
+    position: relative;
+
+    .title{
+        font-size: 1.1rem;
+        font-weight: 600;
+        max-height: 25px;
+        overflow: hidden;
+        padding-right: 45px;
+    }
+
+    .description{
+        font-size: 0.9rem;
+        color: var(--disable-color);
+        max-height: 48px;
+        overflow: hidden;
+    }
+
+    .icon{
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        cursor: pointer;
+    }
+
+    .date{
+        position: absolute;
+        bottom: 7px;
+        font-size: 0.8rem;
+        color: var(--disable-color);
+        font-weight: 600;
+        right: 15px;
+    }
+}

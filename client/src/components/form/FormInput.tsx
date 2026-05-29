@@ -9,6 +9,7 @@ interface FormInputProps extends InputHTMLAttributes<HTMLInputElement> {
     type: "text" | "email" | "password" | "number"
     Icon: LucideReactType
     ref?: Ref<HTMLInputElement>
+    textArea?: boolean
 }
 
 const FormInput = ({ id, type, labelText, Icon, ref, ...props }: FormInputProps) => {
