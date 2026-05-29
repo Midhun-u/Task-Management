@@ -11,13 +11,8 @@ import { addProjectApi, getProjectsApi } from "../api/projectInstance"
 import ProjectList from "../components/project/ProjectList"
 import Spinner from "../components/ui/Spinner"
 import { debounce } from "../utils/debounce"
-import FormInput from "../components/form/FormInput"
-import {
-    Captions as TitleIcon,
-    ArrowDownNarrowWide as DescriptionIcon,
-    X as CloseIcon
-} from 'lucide-react'
 import toast from "react-hot-toast"
+import ProjectForm from "../components/form/ProjectForm"
 
 const Home = () => {
 
@@ -34,7 +29,7 @@ const Home = () => {
     const descriptionRef = useRef<HTMLInputElement>(null)
     const titleId = useId()
     const descriptionId = useId()
-    const {projects} = useAppSelector(state => state.project)
+    const { projects } = useAppSelector(state => state.project)
 
     // Function for getting project
     const handleGetProjects = useCallback(async () => {
@@ -62,19 +57,19 @@ const Home = () => {
     // Function for adding new project
     const handleSubmitProject = async () => {
 
-        if(!titleRef.current || !descriptionRef.current) return
+        if (!titleRef.current || !descriptionRef.current) return
 
         dispatch(projectRequest())
 
-        const result = await addProjectApi({title: titleRef.current.value, description: descriptionRef.current.value})
-        if(result.success){
+        const result = await addProjectApi({ title: titleRef.current.value, description: descriptionRef.current.value })
+        if (result.success) {
             toast.success("Project is addedd")
             const newProjects = [...projects, result.data]
-            dispatch(projectSuccess({projects: newProjects, page: 1}))
+            dispatch(projectSuccess({ projects: newProjects, page: 1 }))
             dialogRef.current?.close()
-        }else{
+        } else {
             toast.error(result.error)
-            dispatch(projectFailed({errorMessage: result.error}))
+            dispatch(projectFailed({ errorMessage: result.error }))
         }
 
     }
@@ -126,42 +121,24 @@ const Home = () => {
                     </Activity>
                 </>
                 <dialog ref={dialogRef} className={style['form-dialog']}>
-                    <form onSubmit={(event) => {
-                        event.preventDefault()
-                        handleSubmitProject()
-                    }} className={style['form']}>
-                        <CloseIcon
-                            strokeWidth={1.7}
-                            size={20}
-                            className={style['close-icon']}
-                            onClick={() => dialogRef.current?.close()}
-                        />
-                        <div>
-                            <FormInput
-                                id={titleId}
-                                labelText='Title'
-                                Icon={TitleIcon}
-                                type='text'
-                                placeholder='Enter title for project'
-                                ref={titleRef}
-                            />
-                            <FormInput
-                                id={descriptionId}
-                                labelText='Description'
-                                Icon={DescriptionIcon}
-                                type='text'
-                                placeholder='Enter description for project'
-                                ref={descriptionRef}
-                            />
-                        </div>
-                        <Button
-                            name='Submit'
-                            className={style['submit-button']}
-                            type='submit'
-                            disabled={loading}
-                        />
-                    </form>
+                    <ProjectForm
+                        descriptionId={descriptionId}
+                        descriptionRef={descriptionRef}
+                        handleCloseForm={() => dialogRef.current?.close()}
+                        handleSubmit={handleSubmitProject}
+                        titleId={titleId}
+                        titleRef={titleRef}
+                    />
                 </dialog>
+                {
+                    projects.length <= 0
+                        ?
+                        <div className={style['error-message-container']}>
+                            <p className={style['error-message']}>You don't have any projects</p>
+                        </div>
+                        :
+                        null
+                }
             </Container>
         </>
     )

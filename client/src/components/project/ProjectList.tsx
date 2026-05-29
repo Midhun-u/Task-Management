@@ -2,17 +2,12 @@ import { useId, useRef, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
 import style from '../../styles/components/project/projectList.module.scss'
 import ProjectCard from './ProjectCard'
-import FormInput from '../form/FormInput'
-import {
-    Captions as TitleIcon,
-    ArrowDownNarrowWide as DescriptionIcon,
-    X as CloseIcon
-} from 'lucide-react'
 import { projectFailed, projectSuccess } from '../../store/projectSlice'
 import type { Project } from '../../types/project'
 import Button from '../ui/Button'
 import { deleteProjectApi, updateProjectApi } from '../../api/projectInstance'
 import toast from 'react-hot-toast'
+import ProjectForm from '../form/ProjectForm'
 
 const ProjectList = () => {
 
@@ -95,46 +90,17 @@ const ProjectList = () => {
                 ))
             }
             <dialog className={style['popup-dialog']} ref={dialogRef}>
-                <form
-                    action=""
-                    className={style['update-form']}
-                    onSubmit={(event) => {
-                        event.preventDefault()
-                        handleUpdateProject()
-                    }}
+                <ProjectForm
+                    handleSubmit={handleUpdateProject}
+                    updateForm
+                    titleRef={titleRef}
+                    descriptionRef={descriptionRef}
+                    descriptionId={descriptionId}
+                    titleId={titleId}
+                    handleCloseForm={() => dialogRef.current?.close()}
+                    titleDefaultValue={project?.title}
+                    descriptionDefaultValue={project?.description}
                 >
-                    <CloseIcon
-                        strokeWidth={1.7}
-                        size={20}
-                        className={style['close-icon']}
-                        onClick={() => dialogRef.current?.close()}
-                    />
-                    <div>
-                        <FormInput
-                            id={titleId}
-                            labelText='Title'
-                            Icon={TitleIcon}
-                            type='text'
-                            placeholder='Enter title for project'
-                            defaultValue={project?.title}
-                            ref={titleRef}
-                        />
-                        <FormInput
-                            id={descriptionId}
-                            labelText='Description'
-                            Icon={DescriptionIcon}
-                            type='text'
-                            placeholder='Enter description for project'
-                            defaultValue={project?.description}
-                            ref={descriptionRef}
-                        />
-                    </div>
-                    <Button
-                        name='Update Project'
-                        className={style['update-button']}
-                        type='submit'
-                        disabled={loading}
-                    />
                     <Button
                         name='Delete Project'
                         className={style['delete-button']}
@@ -142,7 +108,7 @@ const ProjectList = () => {
                         disabled={loading}
                         onClick={handleDeleteProject}
                     />
-                </form>
+                </ProjectForm>
             </dialog>
         </div>
     )
