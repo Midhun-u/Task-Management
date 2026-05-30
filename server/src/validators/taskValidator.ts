@@ -14,7 +14,6 @@ export const taskValidator = <FieldType>(body: TaskBody, update?: boolean): {
 
             const object = zod.object({
                 title: zod.string().trim().min(3).max(50).optional(),
-                description: zod.string().trim().min(10).max(255).optional(),
                 status: zod.enum(['pending', 'completed']).optional()
             })
 

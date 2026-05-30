@@ -23,7 +23,7 @@ export const createTaskController = handleError(async (request: RequestWithUser,
         })
     }
 
-    const validator = taskValidator<{title: string, description: string, projectId: string}>(body)
+    const validator = taskValidator<{title: string, projectId: string}>(body)
 
     if (validator.error || !validator.fields || !validator.success) {
         return sendResponse({
@@ -46,7 +46,6 @@ export const createTaskController = handleError(async (request: RequestWithUser,
 
     const newTask = await TaskModel.addTask({
         title: validator.fields.title as string,
-        description: validator.fields.description as string,
         project_id: validator.fields.projectId as string,
         user_id: userId
     })

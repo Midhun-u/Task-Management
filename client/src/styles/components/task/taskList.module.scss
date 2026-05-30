@@ -1,0 +1,21 @@
+.container {
+    margin-top: 25px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+    gap: 10px;
+
+    .form-dialog{
+        margin: auto;
+        border: none;
+        background-color: var(--foreground-color);
+        width: 450px;
+        border-radius: 10px;
+    }
+}
+
+@media(max-width: 600px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+}

@@ -6,10 +6,11 @@ import Input from './Input'
 import type { ChangeEvent } from 'react'
 
 interface SearchBarProps{
-    onChange?: (event: ChangeEvent<HTMLInputElement>) => void
+    onChange: (event: ChangeEvent<HTMLInputElement>) => void
+    placeholder: string
 }
 
-const SearchBar = ({onChange}: SearchBarProps) => {
+const SearchBar = ({onChange, placeholder}: SearchBarProps) => {
 
     return (
         <div className={style['container']}>
@@ -19,7 +20,7 @@ const SearchBar = ({onChange}: SearchBarProps) => {
                 className={style['icon']}
             />
             <Input
-                placeholder='Search Projects'
+                placeholder={placeholder}
                 onChange={onChange}
             />
         </div>

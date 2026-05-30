@@ -3,18 +3,24 @@ import {
     PictureInPicture2 as PopUpIcon
 } from 'lucide-react'
 import { convertIsoDateToFormat } from '../../utils/convertIsoDateToFormal'
+import {
+    useNavigate
+} from 'react-router'
 
 interface ProjectCardProps{
+    id: string
     title: string,
     description: string
     createdAt: string
     onClickOnPopUp: () => void
 }
 
-const ProjectCard = ({title, description, createdAt, onClickOnPopUp}: ProjectCardProps) => {
+const ProjectCard = ({id, title, description, createdAt, onClickOnPopUp}: ProjectCardProps) => {
+
+    const navigate = useNavigate()
 
     return (
-        <div className={style.container}>
+        <div onClick={() => navigate(`/tasks/${id}`)} className={style.container}>
             <h1 className={style.title}>{title}</h1>
             <p className={style.description}>{description}</p>
             <PopUpIcon

@@ -21,10 +21,6 @@ export const Task = sequelize.define("task", {
         type: DataTypes.STRING(50),
         allowNull: false,
     },
-    description: {
-        type: DataTypes.STRING(255),
-        allowNull: false
-    },
     status: {
         type: DataTypes.ENUM("pending", "completed"),
         defaultValue: "pending"

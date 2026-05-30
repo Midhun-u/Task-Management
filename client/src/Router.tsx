@@ -3,6 +3,7 @@ import Sign from "./pages/Sign"
 import Login from "./pages/Login"
 import Home from "./pages/Home"
 import ProtectedRoutes from "./components/features/ProtectedRoutes"
+import Task from "./pages/Task"
 
 const Router = () => {
 
@@ -22,6 +23,13 @@ const Router = () => {
                 <Route path="/" element={
                     <ProtectedRoutes>
                         <Home
+                        />
+                    </ProtectedRoutes>
+                }
+                />
+                <Route path="/tasks/:projectId" element={
+                    <ProtectedRoutes>
+                        <Task
                         />
                     </ProtectedRoutes>
                 }

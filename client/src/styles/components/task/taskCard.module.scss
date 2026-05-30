@@ -2,30 +2,23 @@
     background-color: var(--foreground-color);
     padding: 15px;
     border-radius: 10px;
-    height: 120px;
+    height: 100px;
     cursor: pointer;
     position: relative;
+    overflow: hidden;
 
     .title{
         font-size: 1.1rem;
         font-weight: 600;
-        max-height: 25px;
+        max-height: 53px;
         overflow: hidden;
         padding-right: 45px;
     }
 
-    .description{
-        font-size: 0.9rem;
+    .title-decorated{
+        @extend .title;
+        text-decoration: line-through;
         color: var(--disable-color);
-        max-height: 48px;
-        overflow: hidden;
-    }
-
-    .icon{
-        position: absolute;
-        top: 15px;
-        right: 15px;
-        cursor: pointer;
     }
 
     .date{

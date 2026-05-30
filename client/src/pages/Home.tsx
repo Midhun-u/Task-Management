@@ -92,6 +92,7 @@ const Home = () => {
                     <div className={style['top-section']}>
                         <SearchBar
                             onChange={handleChange}
+                            placeholder="Seach for projects"
                         />
                         <Button
                             name="Add Project"

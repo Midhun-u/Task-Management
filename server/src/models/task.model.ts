@@ -4,11 +4,10 @@ import type { TaskType } from "../types/task.js";
 
 export const TaskModel = {
 
-    addTask: async (data: Pick<TaskType, "title" | "description" | "project_id" | "user_id">) => {
+    addTask: async (data: Pick<TaskType, "title" | "project_id" | "user_id">) => {
 
         const newTask = await Task.create({
             title: data.title,
-            description: data.description,
             project_id: data.project_id,
             user_id: data.user_id
         }, { returning: true })

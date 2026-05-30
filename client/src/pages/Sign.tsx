@@ -40,7 +40,7 @@ const Sign = () => {
             dispatch(authFailed({errorMessage: result.error}))
         }
 
-    }, [])
+    }, [dispatch, navigate])
 
     return (
         <AuthForm
