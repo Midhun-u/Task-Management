@@ -3,9 +3,8 @@ import { taskInstance } from "./axiosInstance";
 
 // Api for creating task
 export const createTaskApi = handlError(async (data: {
-    project_id: string
+    projectId: string
     title: string
-    status: "completed" | "pending"
 }) => {
 
     const result = await taskInstance.post("/create-task", data)
@@ -27,4 +26,24 @@ export const getTaskApi = handlError(async (id: string) => {
     const result = await taskInstance.get(`/get-task/${id}`)
     return result.data
 
+})
+
+// Api for updating tasks
+export const updateTaskApi = handlError(async (id: string, updateData: {title?: string, status?: "completed" | "pending"}) => {
+
+    const data: Record<string, any> = {}
+
+    if(updateData.title) data.title = updateData.title
+
+    if(updateData.status) data.status = updateData.status
+
+    const result = await taskInstance.patch(`/update-task/${id}`, data)
+    return result.data
+
+})
+
+// Api for deleting task
+export const deleteTaskApi = handlError(async (id: string) => {
+    const result = await taskInstance.delete(`/delete-task/${id}`)
+    return result.data
 })

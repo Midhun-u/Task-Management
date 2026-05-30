@@ -46,6 +46,8 @@ const ProjectForm = ({ handleSubmit, handleCloseForm, titleId, descriptionId, ti
                     placeholder='Enter title for project'
                     ref={titleRef}
                     defaultValue={titleDefaultValue}
+                    minLength={3}
+                    maxLength={50}
                 />
                 <FormInput
                     id={descriptionId}
@@ -55,6 +57,8 @@ const ProjectForm = ({ handleSubmit, handleCloseForm, titleId, descriptionId, ti
                     placeholder='Enter description for project'
                     ref={descriptionRef}
                     defaultValue={descriptionDefaultValue}
+                    minLength={10}
+                    maxLength={255}
                 />
             </div>
             <Button

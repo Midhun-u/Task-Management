@@ -1,12 +1,22 @@
+@use '../../styles' as styles;
+
 .container{
     padding: 10px;
     border-radius: 10px;
     padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 
     .close-icon{
         position: absolute;
         right: 15px;
         top: 10px;
         cursor: pointer;
+        color: var(--foreground-theme-color);
+    }
+
+    .primary-button{
+        @extend %primary-button-style;
     }
 }

@@ -14,7 +14,7 @@ export const taskValidator = <FieldType>(body: TaskBody, update?: boolean): {
 
             const object = zod.object({
                 title: zod.string().trim().min(3).max(50).optional(),
-                status: zod.enum(['pending', 'completed']).optional()
+                status: zod.enum(['pending', 'completed']).optional(),
             })
 
             const fields = object.parse(body) as FieldType
@@ -24,7 +24,6 @@ export const taskValidator = <FieldType>(body: TaskBody, update?: boolean): {
 
         const object = zod.object({
             title: zod.string().trim().min(3).max(50),
-            description: zod.string().trim().min(10).max(255),
             projectId: zod.string().max(100).nonoptional(),
         })
 
